@@ -1,0 +1,64 @@
+{
+  "dataset_info": {
+    "original_samples": 996,
+    "dementia": 512,
+    "control": 484,
+    "augmented_samples": 1992,
+    "total_pool": 2988,
+    "n_features": 18
+  },
+  "model_results": {
+    "Logistic Regression": {
+      "orig_acc": 0.7721,
+      "orig_f1": 0.7738,
+      "orig_auc": 0.8578,
+      "aug_acc": 0.7892,
+      "aug_f1": 0.7909,
+      "aug_auc": 0.8829
+    },
+    "SVM (RBF)": {
+      "orig_acc": 0.8143,
+      "orig_f1": 0.8133,
+      "orig_auc": 0.8929,
+      "aug_acc": 0.8822,
+      "aug_f1": 0.8823,
+      "aug_auc": 0.9479
+    },
+    "Random Forest": {
+      "orig_acc": 0.8725,
+      "orig_f1": 0.8724,
+      "orig_auc": 0.9459,
+      "aug_acc": 0.9431,
+      "aug_f1": 0.9425,
+      "aug_auc": 0.9884
+    },
+    "Gradient Boosting": {
+      "orig_acc": 0.8705,
+      "orig_f1": 0.8731,
+      "orig_auc": 0.9387,
+      "aug_acc": 0.9625,
+      "aug_f1": 0.9628,
+      "aug_auc": 0.9934
+    }
+  },
+  "feature_importance": {
+    "filler_rate": 0.172,
+    "repetition_rate": 0.1015,
+    "honore": 0.0966,
+    "verb_rate": 0.0931,
+    "mean_word_len": 0.082,
+    "pronoun_rate": 0.077,
+    "unique_words": 0.0462,
+    "iu_count": 0.0446,
+    "conj_rate": 0.0427,
+    "n_words": 0.0358,
+    "sent_len_var": 0.0348,
+    "ttr": 0.0323,
+    "mean_sent_len": 0.0309,
+    "iu_density": 0.0288,
+    "brunet": 0.0277,
+    "n_sentences": 0.0261,
+    "neg_rate": 0.0211,
+    "revision_count": 0.0067
+  }
+}

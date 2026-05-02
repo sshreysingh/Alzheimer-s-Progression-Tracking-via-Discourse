@@ -1,0 +1,1142 @@
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body-wrap {
+    display: block;
+  }
+
+  .win {
+    background: #d4d0c8;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    color: #000;
+    max-width: 500px;
+    margin: 1rem auto;
+  }
+
+  .titlebar {
+    background: linear-gradient(to right, #000080, #1084d0);
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+  }
+
+  .titlebar-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .titlebar-icon {
+    width: 14px;
+    height: 14px;
+    background: #c0c0c0;
+    border: 1px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+  }
+
+  .titlebar-btns {
+    display: flex;
+    gap: 2px;
+  }
+
+  .tbtn {
+    width: 16px;
+    height: 14px;
+    background: #d4d0c8;
+    border: 1px solid;
+    border-color: #fff #808080 #808080 #fff;
+    font-size: 9px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    cursor: pointer;
+  }
+
+  .menubar {
+    background: #d4d0c8;
+    border-bottom: 1px solid #808080;
+    padding: 2px 4px;
+    display: flex;
+    gap: 0;
+  }
+
+  .menu-item {
+    padding: 2px 8px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .menu-item:hover {
+    background: #000080;
+    color: #fff;
+  }
+
+  .content {
+    padding: 10px 12px 12px;
+  }
+
+  .groupbox {
+    border: 1px solid #808080;
+    border-top: 1px solid #808080;
+    margin-bottom: 10px;
+    padding: 4px 8px 8px;
+    position: relative;
+  }
+
+  .groupbox-label {
+    position: absolute;
+    top: -8px;
+    left: 8px;
+    background: #d4d0c8;
+    padding: 0 4px;
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  .groupbox-inner {
+    margin-top: 6px;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .label {
+    min-width: 90px;
+    font-size: 12px;
+  }
+
+  .sunken-input {
+    flex: 1;
+    background: #fff;
+    border: 1px solid;
+    border-color: #808080 #fff #fff #808080;
+    padding: 2px 4px;
+    font-size: 12px;
+    font-family: inherit;
+    color: #000;
+    height: 22px;
+  }
+
+  .sunken-area {
+    width: 100%;
+    background: #fff;
+    border: 1px solid;
+    border-color: #808080 #fff #fff #808080;
+    padding: 4px;
+    font-size: 12px;
+    font-family: inherit;
+    color: #000;
+    resize: none;
+    height: 50px;
+  }
+
+  .dropzone-swing {
+    width: 100%;
+    background: #fff;
+    border: 1px solid;
+    border-color: #808080 #fff #fff #808080;
+    padding: 14px 8px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    color: #444;
+    position: relative;
+  }
+
+  .dropzone-swing:hover {
+    background: #f0f0f0;
+  }
+
+  .dropzone-swing input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+
+  .file-path-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+  }
+
+  .file-path-box {
+    flex: 1;
+    background: #fff;
+    border: 1px solid;
+    border-color: #808080 #fff #fff #808080;
+    padding: 2px 4px;
+    font-size: 12px;
+    height: 22px;
+    color: #000;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .btn-swing {
+    background: #d4d0c8;
+    border: 2px solid;
+    border-color: #fff #808080 #808080 #fff;
+    padding: 3px 14px;
+    font-size: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    color: #000;
+    white-space: nowrap;
+  }
+
+  .btn-swing:hover {
+    background: #c8c4bc;
+  }
+
+  .btn-swing:active {
+    border-color: #808080 #fff #fff #808080;
+    padding: 4px 13px 2px 15px;
+  }
+
+  .btn-swing:disabled {
+    color: #808080;
+    cursor: default;
+  }
+
+  .btn-swing.primary {
+    font-weight: bold;
+  }
+
+  .btn-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .progress-track {
+    width: 100%;
+    height: 18px;
+    background: #fff;
+    border: 1px solid;
+    border-color: #808080 #fff #fff #808080;
+    overflow: hidden;
+    display: none;
+    margin-top: 6px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: repeating-linear-gradient(-45deg,
+        #000080,
+        #000080 5px,
+        #1084d0 5px,
+        #1084d0 10px);
+    width: 0%;
+    transition: width 0.3s ease;
+    animation: none;
+  }
+
+  .progress-fill.animating {
+    animation: marchRight 0.5s linear infinite;
+    width: 60%;
+  }
+
+  @keyframes marchRight {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: 28px 0;
+    }
+  }
+
+  .result-box {
+    background: #fff;
+    border: 1px solid;
+    border-color: #808080 #fff #fff #808080;
+    padding: 8px;
+    font-size: 12px;
+    display: none;
+    margin-top: 0;
+  }
+
+  .result-box.visible {
+    display: block;
+  }
+
+  .result-title {
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #d4d0c8;
+  }
+
+  .result-positive {
+    color: #cc0000;
+  }
+
+  .result-negative {
+    color: #006600;
+  }
+
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 3px 0;
+    font-size: 12px;
+  }
+
+  .result-key {
+    color: #444;
+  }
+
+  .result-val {
+    font-weight: bold;
+  }
+
+  .bar-row {
+    margin: 4px 0;
+  }
+
+  .bar-label {
+    font-size: 11px;
+    color: #444;
+    margin-bottom: 1px;
+  }
+
+  .bar-track {
+    width: 100%;
+    height: 12px;
+    background: #d4d0c8;
+    border: 1px solid #808080;
+  }
+
+  .bar-fill-pos {
+    height: 100%;
+    background: #cc0000;
+    transition: width 0.5s;
+  }
+
+  .bar-fill-neg {
+    height: 100%;
+    background: #006600;
+    transition: width 0.5s;
+  }
+
+  .statusbar {
+    background: #d4d0c8;
+    border-top: 1px solid #fff;
+    padding: 2px 6px;
+    font-size: 11px;
+    color: #000;
+    display: flex;
+    gap: 1px;
+  }
+
+  .status-pane {
+    border: 1px solid;
+    border-color: #808080 #fff #fff #808080;
+    padding: 1px 8px;
+    flex: 1;
+  }
+
+  .error-box {
+    background: #fff3f3;
+    border: 1px solid #cc0000;
+    padding: 4px 8px;
+    font-size: 12px;
+    color: #cc0000;
+    margin-top: 6px;
+    display: none;
+  }
+
+  .error-box.visible {
+    display: block;
+  }
+
+  /* Dropdown menus */
+  .menubar {
+    position: relative;
+  }
+
+  .menu-item {
+    position: relative;
+  }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #d4d0c8;
+    border: 2px solid;
+    border-color: #fff #808080 #808080 #fff;
+    min-width: 160px;
+    z-index: 999;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .dropdown.open {
+    display: block;
+  }
+
+  .dd-item {
+    padding: 3px 20px;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .dd-item:hover {
+    background: #000080;
+    color: #fff;
+  }
+
+  .dd-sep {
+    border: none;
+    border-top: 1px solid #808080;
+    margin: 2px 4px;
+  }
+
+  /* Stimulus image */
+  .stimulus-box {
+    width: 100%;
+    background: #fff;
+    border: 1px solid;
+    border-color: #808080 #fff #fff #808080;
+    padding: 4px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .stimulus-img {
+    width: 100%;
+    max-height: 220px;
+    object-fit: contain;
+    display: block;
+    cursor: zoom-in;
+  }
+
+  .stimulus-label {
+    font-size: 10px;
+    color: #444;
+    margin-top: 3px;
+    font-style: italic;
+  }
+
+  /* Lightbox */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 3000;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+
+  .lightbox-overlay.open {
+    display: flex;
+  }
+
+  .lightbox-overlay img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border: 3px solid #fff;
+  }
+
+  .dropzone-swing.drag-over {
+    background: #e0e8ff;
+    border-color: #000080 #d4d0c8 #d4d0c8 #000080;
+  }
+
+  /* Minimized state */
+  .win.minimized .content,
+  .win.minimized .menubar {
+    display: none;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay.open {
+    display: flex;
+  }
+
+  .modal-win {
+    background: #d4d0c8;
+    border: 2px solid;
+    border-color: #fff #808080 #808080 #fff;
+    min-width: 280px;
+    font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+    font-size: 12px;
+  }
+
+  .modal-win .titlebar {
+    font-size: 11px;
+  }
+
+  .modal-body {
+    padding: 16px;
+  }
+
+  .modal-footer {
+    padding: 6px;
+    text-align: center;
+    border-top: 1px solid #808080;
+  }
+
+  /* Recording row */
+  .record-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .btn-record {
+    background: #d4d0c8;
+    border: 2px solid;
+    border-color: #fff #808080 #808080 #fff;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    color: #000;
+  }
+
+  .btn-record:active {
+    border-color: #808080 #fff #fff #808080;
+  }
+
+  .btn-record.recording {
+    color: #cc0000;
+  }
+
+  .rec-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #cc0000;
+    display: none;
+  }
+
+  .rec-dot.active {
+    display: inline-block;
+    animation: blink 0.8s step-start infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .rec-timer {
+    font-size: 12px;
+    color: #444;
+    font-family: monospace;
+  }
+
+  /* Audio preview */
+  .audio-preview {
+    width: 100%;
+    margin-top: 6px;
+    display: none;
+    height: 28px;
+  }
+
+  /* Feature breakdown */
+  .feat-breakdown {
+    margin-top: 8px;
+    display: none;
+  }
+
+  .fb-title {
+    font-size: 11px;
+    color: #444;
+    margin-bottom: 2px;
+  }
+
+  .fb-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+
+  .fb-table td {
+    padding: 1px 0;
+  }
+
+  .fb-label {
+    color: #444;
+    width: 55%;
+  }
+
+  .fb-val {
+    font-weight: bold;
+  }
+
+  /* Copy button */
+  .btn-copy {
+    background: #d4d0c8;
+    border: 1px solid;
+    border-color: #fff #808080 #808080 #fff;
+    padding: 1px 6px;
+    font-size: 10px;
+    font-family: inherit;
+    cursor: pointer;
+    color: #000;
+    margin-left: 4px;
+  }
+
+  .btn-copy:hover {
+    background: #c8c4bc;
+  }
+</style>
+
+<div class="win">
+  <div class="titlebar">
+    <div class="titlebar-left">
+      <div class="titlebar-icon">+</div>
+      <span>Alzheimer's Detection System</span>
+    </div>
+    <div class="titlebar-btns">
+      <div class="tbtn">_</div>
+      <div class="tbtn">□</div>
+      <div class="tbtn">✕</div>
+    </div>
+  </div>
+
+  <div class="menubar">
+    <div class="menu-item" data-menu="menuFile">File
+      <div class="dropdown" id="menuFile">
+        <div class="dd-item" data-action="newAnalysis">New Analysis</div>
+        <div class="dd-item" data-action="saveResult">Save Result</div>
+        <hr class="dd-sep">
+        <div class="dd-item" data-action="exitApp">Exit</div>
+      </div>
+    </div>
+    <div class="menu-item" data-menu="menuAnalysis">Analysis
+      <div class="dropdown" id="menuAnalysis">
+        <div class="dd-item" data-action="runAnalysis">Run Analysis</div>
+        <div class="dd-item" data-action="clearResult">Clear Results</div>
+      </div>
+    </div>
+    <div class="menu-item" data-menu="menuHelp">Help
+      <div class="dropdown" id="menuHelp">
+        <div class="dd-item" data-action="about">About</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="groupbox">
+      <div class="groupbox-label">Patient Information</div>
+      <div class="groupbox-inner">
+        <div class="row">
+          <span class="label">Patient ID:</span>
+          <input class="sunken-input" type="text" id="patientId" placeholder="e.g. PT-0042" />
+        </div>
+        <div class="row">
+          <span class="label">Patient Name:</span>
+          <input class="sunken-input" type="text" id="patientName" placeholder="Full name" />
+        </div>
+        <div class="row">
+          <span class="label">Age:</span>
+          <input class="sunken-input" type="number" id="patientAge" placeholder="Years" style="max-width:80px;" />
+          <span style="font-size:12px; color:#444; margin-left:4px;">yrs</span>
+        </div>
+        <div class="row" style="align-items:flex-start;">
+          <span class="label">Notes:</span>
+          <textarea class="sunken-area" id="patientNotes" placeholder="Optional clinical notes..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="groupbox">
+      <div class="groupbox-label">Audio Input</div>
+      <div class="groupbox-inner">
+        <!-- Cookie Theft stimulus image -->
+        <div class="stimulus-box">
+          <img src="{{ url_for('static', filename='cookie_theft.png') }}" class="stimulus-img" id="stimulusImg" />
+          <div class="stimulus-label">&#9432; Describe everything you see happening in this picture, then record or
+            upload your audio below.</div>
+        </div>
+        <div class="dropzone-swing" id="dropzone">
+          <input type="file" id="fileInput" accept=".wav,audio/wav,.webm,.ogg,audio/*" />
+          [ Drop WAV file here or click to browse ]
+        </div>
+        <div class="record-row">
+          <button class="btn-record" id="recordBtn">🎙 Record</button>
+          <div class="rec-dot" id="recDot"></div>
+          <span class="rec-timer" id="recTimer">00:00</span>
+          <span style="font-size:11px;color:#808080;" id="recHint">Click to record from microphone</span>
+        </div>
+        <div class="file-path-row">
+          <span style="font-size:11px; color:#444; min-width:55px;">File path:</span>
+          <div class="file-path-box" id="filePath">No file selected.</div>
+          <button class="btn-swing" id="clearBtn" style="padding:2px 8px; font-size:11px;" disabled>Clear</button>
+        </div>
+        <div class="progress-track" id="progressTrack">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <audio id="audioPreview" class="audio-preview" controls></audio>
+      </div>
+    </div>
+
+    <div class="groupbox">
+      <div class="groupbox-label">Diagnosis Result</div>
+      <div class="groupbox-inner">
+        <div class="result-box" id="resultBox">
+          <div class="result-title" id="resultTitle">—</div>
+          <div class="result-row">
+            <span class="result-key">Confidence:</span>
+            <span class="result-val" id="resConf">—</span>
+          </div>
+          <div class="result-row">
+            <span class="result-key">Duration:</span>
+            <span class="result-val" id="resDur">—</span>
+          </div>
+          <div class="result-row">
+            <span class="result-key">Language:</span>
+            <span class="result-val" id="resSR">—</span>
+          </div>
+          <div class="result-row">
+            <span class="result-key">Features:</span>
+            <span class="result-val" id="resFeats">—</span>
+          </div>
+          <div style="margin-top:6px;">
+            <div style="font-size:11px;color:#444;margin-bottom:2px;">Transcript: <button class="btn-copy"
+                id="copyTranscriptBtn">⧘ Copy</button></div>
+            <div id="resTranscript"
+              style="background:#f8f8f8;border:1px solid #ccc;padding:4px 6px;font-size:11px;color:#333;max-height:60px;overflow-y:auto;word-break:break-word;">
+              —</div>
+          </div>
+          <div style="margin-top:8px;">
+            <div class="bar-row">
+              <div class="bar-label">Alzheimer's Detected</div>
+              <div class="bar-track">
+                <div class="bar-fill-pos" id="barPos" style="width:0%"></div>
+              </div>
+              <div style="font-size:11px; text-align:right;" id="pctPos">0%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">No Alzheimer's</div>
+              <div class="bar-track">
+                <div class="bar-fill-neg" id="barNeg" style="width:0%"></div>
+              </div>
+              <div style="font-size:11px; text-align:right;" id="pctNeg">0%</div>
+            </div>
+          </div>
+          <div class="feat-breakdown" id="featBreakdown">
+            <div class="fb-title">Linguistic Feature Flags:</div>
+            <table class="fb-table">
+              <tbody id="featBreakdownBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="error-box" id="errorBox"></div>
+        <div class="btn-row">
+          <button class="btn-swing primary" id="analyzeBtn" disabled>Run Analysis</button>
+          <button class="btn-swing" id="clearResultBtn">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:10px; color:#808080; text-align:center; margin-top:4px;">
+      ⚠ For research use only. Not a substitute for professional medical diagnosis.
+    </div>
+  </div>
+
+  <div class="statusbar">
+    <div class="status-pane" id="statusPane">Ready.</div>
+    <div class="status-pane" style="max-width:120px; text-align:right;">v1.0.0</div>
+  </div>
+</div>
+
+<!-- About Modal -->
+<div class="modal-overlay" id="aboutModal">
+  <div class="modal-win">
+    <div class="titlebar">
+      <div class="titlebar-left">
+        <div class="titlebar-icon">+</div><span>About</span>
+      </div>
+      <div class="titlebar-btns">
+        <div class="tbtn" onclick="closeModal('aboutModal')">✕</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <b>Alzheimer's Detection System</b> v1.0.0<br><br>
+      Uses Whisper speech-to-text transcription and a machine-learning model trained on 18 linguistic features (filler
+      rate, vocabulary richness, repetition, information units, and more) to screen for Alzheimer's indicators in
+      speech.<br><br>
+      <i>For research use only.</i>
+    </div>
+    <div class="modal-footer"><button class="btn-swing" onclick="closeModal('aboutModal')">OK</button></div>
+  </div>
+</div>
+
+<!-- Lightbox for stimulus image -->
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <img src="{{ url_for('static', filename='cookie_theft.png') }}" alt="Cookie Theft picture enlarged" />
+</div>
+
+<script>
+  const fileInput = document.getElementById('fileInput');
+  const filePath = document.getElementById('filePath');
+  const clearBtn = document.getElementById('clearBtn');
+  const analyzeBtn = document.getElementById('analyzeBtn');
+  const clearResultBtn = document.getElementById('clearResultBtn');
+  const progressTrack = document.getElementById('progressTrack');
+  const progressFill = document.getElementById('progressFill');
+  const resultBox = document.getElementById('resultBox');
+  const errorBox = document.getElementById('errorBox');
+  const statusPane = document.getElementById('statusPane');
+  const dropzone = document.getElementById('dropzone');
+  const audioPreview = document.getElementById('audioPreview');
+  const win = document.querySelector('.win');
+  let selectedFile = null;
+  let audioObjectUrl = null;
+
+  /* ── Stimulus image lightbox ── */
+  document.getElementById('stimulusImg').addEventListener('click', () => {
+    document.getElementById('lightboxOverlay').classList.add('open');
+  });
+  document.getElementById('lightboxOverlay').addEventListener('click', () => {
+    document.getElementById('lightboxOverlay').classList.remove('open');
+  });
+
+  /* ── File input ── */
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files[0]) setFile(fileInput.files[0]);
+  });
+
+  function setFile(f) {
+    if (!f.name.match(/\.(wav|webm|ogg|mp3|m4a|flac)$/i)) {
+      showError('Unsupported file type. Upload a WAV or use the Record button.');
+      return;
+    }
+    selectedFile = f;
+    filePath.textContent = f.name;
+    clearBtn.disabled = false;
+    analyzeBtn.disabled = false;
+    resultBox.classList.remove('visible');
+    errorBox.classList.remove('visible');
+    statusPane.textContent = 'File loaded: ' + f.name;
+    if (audioObjectUrl) URL.revokeObjectURL(audioObjectUrl);
+    audioObjectUrl = URL.createObjectURL(f);
+    audioPreview.src = audioObjectUrl;
+    audioPreview.style.display = 'block';
+  }
+
+  /* ── Drag and Drop ── */
+  dropzone.addEventListener('dragover', e => {
+    e.preventDefault();
+    dropzone.classList.add('drag-over');
+  });
+  dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag-over'));
+  dropzone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropzone.classList.remove('drag-over');
+    const f = e.dataTransfer.files[0];
+    if (f) setFile(f);
+  });
+
+  /* ── Clear buttons ── */
+  clearBtn.addEventListener('click', () => {
+    selectedFile = null;
+    fileInput.value = '';
+    filePath.textContent = 'No file selected.';
+    clearBtn.disabled = true;
+    analyzeBtn.disabled = true;
+    statusPane.textContent = 'Ready.';
+    audioPreview.src = ''; audioPreview.style.display = 'none';
+    if (audioObjectUrl) { URL.revokeObjectURL(audioObjectUrl); audioObjectUrl = null; }
+  });
+  clearResultBtn.addEventListener('click', () => {
+    resultBox.classList.remove('visible');
+    errorBox.classList.remove('visible');
+    statusPane.textContent = 'Ready.';
+  });
+
+  /* ── Titlebar buttons ── */
+  const tbtns = document.querySelectorAll('.tbtn');
+  tbtns[0].title = 'Minimize';
+  tbtns[1].title = 'Maximize';
+  tbtns[2].title = 'Close';
+  tbtns[0].addEventListener('click', () => win.classList.toggle('minimized'));
+  tbtns[1].addEventListener('click', () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen();
+  });
+  tbtns[2].addEventListener('click', () => {
+    if (confirm('Close Alzheimer\'s Detection System?')) win.style.display = 'none';
+  });
+
+  /* ── Menu bar dropdowns ── */
+  document.querySelectorAll('.menu-item[data-menu]').forEach(item => {
+    item.addEventListener('click', e => {
+      e.stopPropagation();
+      const id = item.dataset.menu;
+      const isOpen = document.getElementById(id).classList.contains('open');
+      closeAllMenus();
+      if (!isOpen) document.getElementById(id).classList.add('open');
+    });
+  });
+  document.addEventListener('click', closeAllMenus);
+  function closeAllMenus() {
+    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+  }
+  document.querySelectorAll('.dd-item').forEach(item => {
+    item.addEventListener('click', e => {
+      e.stopPropagation();
+      closeAllMenus();
+      const action = item.dataset.action;
+      if (action === 'newAnalysis') {
+        selectedFile = null; fileInput.value = '';
+        filePath.textContent = 'No file selected.';
+        clearBtn.disabled = true; analyzeBtn.disabled = true;
+        resultBox.classList.remove('visible');
+        errorBox.classList.remove('visible');
+        document.getElementById('patientId').value = '';
+        document.getElementById('patientName').value = '';
+        document.getElementById('patientAge').value = '';
+        document.getElementById('patientNotes').value = '';
+        audioPreview.src = ''; audioPreview.style.display = 'none';
+        statusPane.textContent = 'Ready.';
+      } else if (action === 'saveResult') {
+        saveResult();
+      } else if (action === 'exitApp') {
+        if (confirm('Exit?')) win.style.display = 'none';
+      } else if (action === 'runAnalysis') {
+        analyzeBtn.click();
+      } else if (action === 'clearResult') {
+        clearResultBtn.click();
+      } else if (action === 'about') {
+        openModal('aboutModal');
+      }
+    });
+  });
+
+  function openModal(id) { document.getElementById(id).classList.add('open'); }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+  /* ── Microphone Recording ── */
+  const recordBtn = document.getElementById('recordBtn');
+  const recDot = document.getElementById('recDot');
+  const recTimer = document.getElementById('recTimer');
+  const recHint = document.getElementById('recHint');
+  let mediaRecorder = null, recChunks = [], recInterval = null, recSeconds = 0;
+
+  recordBtn.addEventListener('click', async () => {
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+      // Stop recording
+      mediaRecorder.stop();
+    } else {
+      // Start recording
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        recChunks = [];
+        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recChunks.push(e.data); };
+        mediaRecorder.onstop = () => {
+          stream.getTracks().forEach(t => t.stop());
+          clearInterval(recInterval);
+          recDot.classList.remove('active');
+          recordBtn.classList.remove('recording');
+          recordBtn.textContent = '\uD83C\uDF99 Record';
+          if (recSeconds < 3) {
+            showError('Recording too short. Please record at least 3 seconds.');
+            recHint.textContent = 'Click to record from microphone';
+            recTimer.textContent = '00:00';
+            return;
+          }
+          recHint.textContent = 'Recording ready \u2014 click Run Analysis to analyse';
+          const mimeType = mediaRecorder.mimeType || 'audio/webm';
+          const ext = mimeType.includes('ogg') ? '.ogg' : '.webm';
+          const blob = new Blob(recChunks, { type: mimeType });
+          const file = new File([blob], 'recording' + ext, { type: mimeType });
+          setFile(file);
+        };
+        try { mediaRecorder.start(); } catch (startErr) {
+          stream.getTracks().forEach(t => t.stop());
+          showError('Recording failed to start: ' + startErr.message);
+          return;
+        }
+        recSeconds = 0;
+        recTimer.textContent = '00:00';
+        recDot.classList.add('active');
+        recordBtn.classList.add('recording');
+        recordBtn.textContent = '\u23F9 Stop';
+        recHint.textContent = 'Recording\u2026';
+        recInterval = setInterval(() => {
+          recSeconds++;
+          const m = String(Math.floor(recSeconds / 60)).padStart(2, '0');
+          const s = String(recSeconds % 60).padStart(2, '0');
+          recTimer.textContent = m + ':' + s;
+        }, 1000);
+      } catch (err) {
+        recDot.classList.remove('active');
+        recordBtn.classList.remove('recording');
+        recordBtn.textContent = '\uD83C\uDF99 Record';
+        recHint.textContent = 'Click to record from microphone';
+        showError('Microphone access denied: ' + err.message);
+      }
+    }
+  });
+
+  document.getElementById('copyTranscriptBtn').addEventListener('click', () => {
+    const text = document.getElementById('resTranscript').textContent;
+    if (!text || text === '\u2014') return;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copyTranscriptBtn');
+      btn.textContent = '\u2714 Copied';
+      setTimeout(() => { btn.textContent = '\u29D8 Copy'; }, 1500);
+    });
+  });
+
+  /* ── Analyze ── */
+  analyzeBtn.addEventListener('click', async () => {
+    if (!selectedFile) return;
+    errorBox.classList.remove('visible');
+    resultBox.classList.remove('visible');
+    progressTrack.style.display = 'block';
+    progressFill.classList.add('animating');
+    analyzeBtn.disabled = true;
+    statusPane.textContent = 'Analysing audio...';
+
+    const formData = new FormData();
+    formData.append('audio', selectedFile);
+    formData.append('patient_id', document.getElementById('patientId').value);
+    formData.append('patient_name', document.getElementById('patientName').value);
+    formData.append('patient_age', document.getElementById('patientAge').value);
+    formData.append('notes', document.getElementById('patientNotes').value);
+
+    try {
+      const res = await fetch('/predict', { method: 'POST', body: formData });
+      const data = await res.json();
+      progressFill.classList.remove('animating');
+      progressFill.style.width = '100%';
+      setTimeout(() => { progressTrack.style.display = 'none'; progressFill.style.width = '0%'; }, 500);
+      if (!res.ok || data.error) {
+        showError(data.error || 'Server error.');
+      } else {
+        showResult(data);
+        statusPane.textContent = 'Analysis complete.';
+      }
+    } catch (e) {
+      progressFill.classList.remove('animating');
+      progressTrack.style.display = 'none';
+      showError('Cannot connect to server. Ensure Flask is running on port 5000.');
+    }
+    analyzeBtn.disabled = false;
+  });
+
+  function showError(msg) {
+    errorBox.textContent = 'Error: ' + msg;
+    errorBox.classList.add('visible');
+    statusPane.textContent = 'Error.';
+  }
+
+  function showResult(data) {
+    const pos = data.prediction === 1;
+    const title = document.getElementById('resultTitle');
+    title.textContent = data.label;
+    title.className = 'result-title ' + (pos ? 'result-positive' : 'result-negative');
+    document.getElementById('resConf').textContent = data.confidence + '%';
+    document.getElementById('resDur').textContent = data.audio_info.duration_seconds + 's';
+    document.getElementById('resSR').textContent = (data.audio_info.language || '—').toUpperCase();
+    document.getElementById('resFeats').textContent = data.audio_info.features_extracted;
+    document.getElementById('resTranscript').textContent = data.transcript || '—';
+    document.getElementById('pctPos').textContent = data.prob_positive + '%';
+    document.getElementById('pctNeg').textContent = data.prob_negative + '%';
+    setTimeout(() => {
+      document.getElementById('barPos').style.width = data.prob_positive + '%';
+      document.getElementById('barNeg').style.width = data.prob_negative + '%';
+    }, 100);
+    const FEAT_META = {
+      filler_rate: { label: 'Filler Rate', high_bad: true, warn: 0.10 },
+      repetition_rate: { label: 'Repetition Rate', high_bad: true, warn: 0.07 },
+      ttr: { label: 'Vocab Richness', high_bad: false, warn: 0.55 },
+      honore: { label: 'Honore Stat', high_bad: false, warn: 1500 },
+      verb_rate: { label: 'Verb Rate', high_bad: false, warn: 0.15 },
+      pronoun_rate: { label: 'Pronoun Rate', high_bad: true, warn: 0.15 },
+      iu_count: { label: 'Info Units', high_bad: false, warn: 8 },
+      unique_words: { label: 'Unique Words', high_bad: false, warn: 45 },
+    };
+    const fr = data.features_raw || {};
+    const tbody = document.getElementById('featBreakdownBody');
+    tbody.innerHTML = '';
+    Object.entries(FEAT_META).forEach(([key, meta]) => {
+      const val = fr[key]; if (val === undefined) return;
+      const warn = meta.high_bad ? val > meta.warn : val < meta.warn;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td class="fb-label">${meta.label}</td><td class="fb-val">${val.toFixed(3)}</td><td style="color:${warn ? '#cc0000' : '#006600'};font-weight:bold;padding-left:4px;">${warn ? '⚠' : '✓'}</td>`;
+      tbody.appendChild(tr);
+    });
+    document.getElementById('featBreakdown').style.display = 'block';
+    resultBox.classList.add('visible');
+  }
+
+  function saveResult() {
+    const title = document.getElementById('resultTitle').textContent;
+    if (!title || title === '—') { alert('No result to save.'); return; }
+    const lines = [
+      'Alzheimer\'s Detection System — Result',
+      '========================================',
+      'Patient ID:   ' + document.getElementById('patientId').value,
+      'Patient Name: ' + document.getElementById('patientName').value,
+      'Age:          ' + document.getElementById('patientAge').value,
+      '',
+      'Result:       ' + title,
+      'Confidence:   ' + document.getElementById('resConf').textContent,
+      'Duration:     ' + document.getElementById('resDur').textContent,
+      'Language:     ' + document.getElementById('resSR').textContent,
+      'AD Prob:      ' + document.getElementById('pctPos').textContent,
+      'No-AD Prob:   ' + document.getElementById('pctNeg').textContent,
+      '',
+      'Transcript:',
+      document.getElementById('resTranscript').textContent,
+    ];
+    const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'result_' + (document.getElementById('patientId').value || 'unknown') + '.txt';
+    a.click();
+  }
+</script>
