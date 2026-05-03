@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from faster_whisper import WhisperModel
-import joblib
 import numpy as np
 import re
 import math
@@ -11,6 +10,7 @@ import warnings
 from collections import Counter
 from datetime import datetime
 from flask import render_template
+from load_model import load_portable_model   
 
 warnings.filterwarnings('ignore')
 
@@ -26,11 +26,11 @@ def index():
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024
 
 # ── Load model ──────────────────────────────────────────────
-MODEL_PATH = 'alzheimers_model.pkl'
-model = joblib.load(MODEL_PATH)
-print(f"✅ ML model loaded: {type(model).__name__}")
+MODEL_PATH = 'model_portable.json'                           
+model = load_portable_model(MODEL_PATH)                      
+print(f"✅ ML model loaded (portable JSON — no version conflicts)")
 
-# ── Whisper: use 'tiny' (already cached). Switch to 'base' only if network available. ─
+
 whisper_model = WhisperModel("tiny", device="cpu", compute_type="int8")
 print("✅ Whisper model loaded")
 
@@ -151,8 +151,6 @@ def extract_linguistic_features(text: str) -> np.ndarray:
     return features
 
 
-
-
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'audio' not in request.files:
@@ -169,7 +167,6 @@ def predict():
     patient_age  = request.form.get('patient_age', '')
     notes        = request.form.get('notes', '')
 
-    # ── Fix #10: init tmp_path before try so finally is safe ─
     tmp_path = None
     try:
         with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
@@ -183,7 +180,6 @@ def predict():
         if not transcript:
             return jsonify({'error': 'Could not transcribe audio. Please speak clearly.'}), 400
 
-        # ── Fix #4: reject audio shorter than 3 seconds ──────
         if info.duration < 3.0:
             return jsonify({
                 'error': f'Audio too short ({info.duration:.1f}s). Please record at least 3 seconds.'
@@ -197,7 +193,6 @@ def predict():
         prediction    = model.predict(X)[0]
         probabilities = model.predict_proba(X)[0]
 
-        # ── Fix #5: return named feature breakdown ────────────
         features_raw = {
             name: round(float(val), 4)
             for name, val in zip(FEATURE_NAMES, features)
@@ -225,7 +220,6 @@ def predict():
             'timestamp': datetime.now().isoformat()
         }
 
-        # ── Fix #12: store in history ─────────────────────────
         analysis_history.append(result)
         if len(analysis_history) > 50:
             analysis_history.pop(0)
@@ -236,7 +230,6 @@ def predict():
         return jsonify({'error': str(e)}), 500
 
     finally:
-        # ── Fix #10: safe cleanup even if save never happened ─
         if tmp_path and os.path.exists(tmp_path):
             os.unlink(tmp_path)
 
@@ -251,7 +244,7 @@ def history():
 def health():
     return jsonify({
         'status': 'ok',
-        'model': type(model).__name__,
+        'model': 'GradientBoostingClassifier (portable)',
         'history_count': len(analysis_history)
     })
 

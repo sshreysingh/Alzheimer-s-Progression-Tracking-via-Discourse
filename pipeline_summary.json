@@ -1,64 +1,44 @@
 {
+  "model": "Gradient Boosting (GradientBoostingClassifier)",
   "dataset_info": {
-    "original_samples": 996,
-    "dementia": 512,
-    "control": 484,
-    "augmented_samples": 1992,
-    "total_pool": 2988,
+    "original_samples": 1992,
+    "dementia": 1024,
+    "control": 968,
+    "train_size": 1593,
+    "test_size": 399,
     "n_features": 18
   },
-  "model_results": {
-    "Logistic Regression": {
-      "orig_acc": 0.7721,
-      "orig_f1": 0.7738,
-      "orig_auc": 0.8578,
-      "aug_acc": 0.7892,
-      "aug_f1": 0.7909,
-      "aug_auc": 0.8829
-    },
-    "SVM (RBF)": {
-      "orig_acc": 0.8143,
-      "orig_f1": 0.8133,
-      "orig_auc": 0.8929,
-      "aug_acc": 0.8822,
-      "aug_f1": 0.8823,
-      "aug_auc": 0.9479
-    },
-    "Random Forest": {
-      "orig_acc": 0.8725,
-      "orig_f1": 0.8724,
-      "orig_auc": 0.9459,
-      "aug_acc": 0.9431,
-      "aug_f1": 0.9425,
-      "aug_auc": 0.9884
-    },
-    "Gradient Boosting": {
-      "orig_acc": 0.8705,
-      "orig_f1": 0.8731,
-      "orig_auc": 0.9387,
-      "aug_acc": 0.9625,
-      "aug_f1": 0.9628,
-      "aug_auc": 0.9934
-    }
+  "cv_results": {
+    "accuracy_mean": 0.9215,
+    "accuracy_std": 0.0127,
+    "f1_mean": 0.9219,
+    "f1_std": 0.0132,
+    "auc_mean": 0.9759,
+    "auc_std": 0.0075
+  },
+  "test_set_results": {
+    "accuracy": 0.9048,
+    "f1": 0.9055,
+    "auc": 0.9763
   },
   "feature_importance": {
-    "filler_rate": 0.172,
-    "repetition_rate": 0.1015,
-    "honore": 0.0966,
-    "verb_rate": 0.0931,
-    "mean_word_len": 0.082,
-    "pronoun_rate": 0.077,
-    "unique_words": 0.0462,
-    "iu_count": 0.0446,
-    "conj_rate": 0.0427,
-    "n_words": 0.0358,
-    "sent_len_var": 0.0348,
-    "ttr": 0.0323,
-    "mean_sent_len": 0.0309,
-    "iu_density": 0.0288,
-    "brunet": 0.0277,
-    "n_sentences": 0.0261,
-    "neg_rate": 0.0211,
-    "revision_count": 0.0067
+    "filler_rate": 0.3467,
+    "honore": 0.1006,
+    "mean_word_len": 0.0841,
+    "verb_rate": 0.0836,
+    "repetition_rate": 0.0745,
+    "pronoun_rate": 0.0543,
+    "unique_words": 0.0511,
+    "conj_rate": 0.0337,
+    "sent_len_var": 0.0299,
+    "iu_count": 0.0272,
+    "n_sentences": 0.0262,
+    "neg_rate": 0.0221,
+    "mean_sent_len": 0.0175,
+    "n_words": 0.0124,
+    "ttr": 0.011,
+    "brunet": 0.0109,
+    "iu_density": 0.0084,
+    "revision_count": 0.0059
   }
 }
